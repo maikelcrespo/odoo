@@ -153,7 +153,7 @@ exports.PosModel = Backbone.Model.extend({
         loaded: function(self,users){ self.user = users[0]; },
     },{ 
         model:  'res.company',
-        fields: [ 'currency_id', 'email', 'website', 'company_registry', 'vat', 'name', 'phone', 'partner_id' , 'country_id', 'tax_calculation_rounding_method'],
+        fields: [ 'currency_id', 'email', 'website', 'company_registry', 'vat', 'name', 'phone', 'partner_id' , 'country_id', 'tax_calculation_rounding_method', 'street'],
         ids:    function(self){ return [self.user.company_id[0]]; },
         loaded: function(self,companies){ self.company = companies[0]; },
     },{
@@ -1851,6 +1851,7 @@ exports.Order = Backbone.Model.extend({
                 name: company.name,
                 phone: company.phone,
                 logo:  this.pos.company_logo_base64,
+                address: company.street
             },
             shop:{
                 name: shop.name,

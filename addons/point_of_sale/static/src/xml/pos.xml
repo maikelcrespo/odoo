@@ -1402,16 +1402,29 @@
     <t t-name="PosTicket">
         <div class="pos-sale-ticket">
             
-            <div class="pos-center-align"><t t-esc="order.formatted_validation_date"/> <t t-esc="order.name"/></div>
+             <!--<div class="pos-center-align"><t t-esc="moment().format('L LT')"/> <t t-esc="order.name"/></div>-->
+
+            <img width="250"  hspace="20" src="/point_of_sale/static/src/img/LogoOficial.png" />
+            <!--<div id="company_logo" style="text-align:center;">
+                <img t-att-src="receipt.company.logo" height="60px" width="240px"/>
+            </div>-->
+
             <br />
-            <t t-esc="widget.pos.company.name"/><br />
-            <div class="receipt-phone">
+            <br />
+
+            <t t-esc=""/>
+            <div style="text-align: center;">
+                <t t-esc="widget.pos.company.name"/><br />
+                Dirección: <t t-esc="receipt.company.address || ''"/><br />
                 Phone: <t t-esc="widget.pos.company.phone || ''"/><br />
-            </div>
-            <div class="receipt-user">
-                User: <t t-esc="widget.pos.cashier ? widget.pos.cashier.name : widget.pos.user.name"/><br />
+                Le atendió: <t t-esc="widget.pos.cashier ? widget.pos.cashier.name : widget.pos.user.name"/><br />
+                P.V.P I.V.A INCLUÍDO<br />
+                <!-- Shop: <t t-esc="widget.pos.shop.name"/><br /> -->
             </div>
             <br />
+            <br />
+
+
             <t t-if="receipt.header">
                 <div style='text-align:center'>
                     <t t-esc="receipt.header" />
