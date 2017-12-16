@@ -84,6 +84,20 @@ var PosBaseWidget = Widget.extend({
         quota = total * vat_percentage;
         quota = quota.toFixed(2);
         return quota;
+    },
+    calculateDiscountedLinesInReprint: function(product_price, discount){
+        if(discount !== null && discount !== 0){
+            var discountedPrice = 0;
+            var discountCalculated = discount / 100;
+            var discountValue = product_price * discountCalculated;
+            discountedPrice = product_price - discountValue;
+            var discountedPriceStr = discountedPrice + ' €';
+            return discountedPriceStr;
+        }
+        else{
+            var productPriceStr = product_price + ' €';
+            return productPriceStr;
+        }
     }
 });
 
