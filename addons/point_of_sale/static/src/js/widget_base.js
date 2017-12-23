@@ -72,6 +72,19 @@ var PosBaseWidget = Widget.extend({
         }
         return value;
     },
+    calculateTaxBase: function(total, vat_percentage){
+        var taxBase = 0;
+        var quota = total * vat_percentage;
+        taxBase = total - quota;
+        taxBase = taxBase.toFixed(2);
+        return taxBase;
+    },
+    calculateTaxCuota: function(total, vat_percentage){
+        var quota = 0;
+        quota = total * vat_percentage;
+        quota = quota.toFixed(2);
+        return quota;
+    }
 });
 
 return PosBaseWidget;
