@@ -130,7 +130,7 @@
                 <div class='pay-circle' style="background-color: white; color: white;">
                     <i class='fa fa-chevron-right' style="color: #6EC89B;" />
                 </div>
-                <span style="font-size: 20px;">Payment</span>
+                <span style="font-size: 20px;">Cobrar</span>
             </button>
         </div>
     </t>

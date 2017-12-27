@@ -14,7 +14,7 @@ var _t = core._t;
 
 models.load_models({
             model: 'pos.order',
-            fields: ['id', 'name', 'session_id', 'pos_reference', 'partner_id', 'amount_total', 'amount_tax'],
+            fields: ['id', 'name', 'session_id', 'pos_reference', 'partner_id', 'amount_total', 'amount_tax', 'date_order', 'state'],
             loaded: function (self, pos_orders) {
                 var new_order_list = [];
                 for (var i in pos_orders){
@@ -131,13 +131,16 @@ var OldOrdersWidget = pos_screens.ScreenWidget.extend({
         var self = this;
         this.$('.button.print').click(function(){
             if (!self._locked) {
-                self.gui.screen_instances.receipt.print();
+                // self.gui.screen_instances.receipt.print();
+
+                // self.gui.screen_instances.receipt.print_web();
+                console.error(self.gui.screen_instances);
             }
-            new Model('pos.order').call('get_details',[self.pos_reference]).then(function(id){
+            /*new Model('pos.order').call('get_details',[self.pos_reference]).then(function(id){
                 self.chrome.do_action('order_reprinting_pos.pos_receipt_report',{additional_context:{
                     active_ids:[id],
                 }});
-            });
+            });*/
         });
     },
 
