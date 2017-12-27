@@ -34,6 +34,19 @@ var PosBaseWidget = Widget.extend({
             return (currency.symbol || '') + ' ' + amount;
         }
     },
+    format_date: function(date_str){
+       var date = new Date(date_str);
+
+       //DATE
+       var day = date.getDate();
+       var month = date.getMonth();
+       var year = date.getFullYear();
+       //TIME
+       var hour = date.getHours();
+       var minutes = date.getMinutes();
+
+       return day + '/' + month + '/' + year + '  ' + hour + ':' + ((minutes<10?'0':'') + minutes);
+    },
     format_currency_no_symbol: function(amount, precision) {
         var currency = (this.pos && this.pos.currency) ? this.pos.currency : {symbol:'$', position: 'after', rounding: 0.01, decimals: 2};
         var decimals = currency.decimals;
@@ -84,6 +97,20 @@ var PosBaseWidget = Widget.extend({
         quota = total * vat_percentage;
         quota = quota.toFixed(2);
         return quota;
+    },
+    calculateDiscountedLinesInReprint: function(product_price, discount){
+        if(discount !== null && discount !== 0){
+            var discountedPrice = 0;
+            var discountCalculated = discount / 100;
+            var discountValue = product_price * discountCalculated;
+            discountedPrice = product_price - discountValue;
+            var discountedPriceStr = discountedPrice + ' €';
+            return discountedPriceStr;
+        }
+        else{
+            var productPriceStr = product_price + ' €';
+            return productPriceStr;
+        }
     }
 });
 
