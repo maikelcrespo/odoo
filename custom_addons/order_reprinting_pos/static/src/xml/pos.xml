@@ -77,8 +77,8 @@
 
     <t t-name="PosTicketOld">
         <div class="pos-sale-ticket" style="margin-left:33% !important;">
-
-            <img width="250"  hspace="20" src="/point_of_sale/static/src/img/LogoOficial.png" />
+            <div style="font-family:Lucida Console !important;">
+                <img width="250"  hspace="20" src="/point_of_sale/static/src/img/LogoOficial.png" />
             <!--<div id="company_logo" style="text-align:center;">
                 <img t-att-src="receipt.company.logo" height="60px" width="240px"/>
             </div>-->
@@ -105,7 +105,7 @@
                     <col width='30%' />
                 </colgroup>
                 <tr>
-                    <td>
+                    <td style="font-family:Lucida Console !important;">
                         Le atendió: <t t-esc="widget.pos.cashier ? widget.pos.cashier.name : widget.pos.user.name"/>
                     </td>
                     <td style="text-align: right;">
@@ -121,6 +121,26 @@
                     <col width='25%' />
                     <col width='25%' />
                 </colgroup>
+
+                <tr>
+                    <td>
+                        PRODUCTO
+                    </td>
+                    <td style="text-align: right;">
+                        CANTIDAD
+                    </td>
+                    <td style="text-align: right;">
+                        PRECIO
+                    </td>
+                </tr>
+                <tr style="height:2px !important; background-color: black !important;">
+                    <td> </td> <td> </td> <td> </td>
+                </tr>
+
+                <tr style="height:5px !important;">
+                    <td> </td> <td> </td> <td> </td>
+                </tr>
+
                 <tr t-foreach="orderlines" t-as="orderline">
                     <td>
                         <t t-esc="product_id"/>
@@ -130,59 +150,62 @@
                             </div>
                         </t>
                     </td>
-                    <td class="pos-right-align">
+                    <td class="pos-right-align" style="text-align: right;">
                         <t t-esc="orderline.qty"/>
                     </td>
-                    <td class="pos-right-align">
+                    <td class="pos-right-align" style="text-align: right;">
                         <t t-esc="widget.calculateDiscountedLinesInReprint(orderline.price_unit, orderline.discount)"/>
                     </td>
                 </tr>
             </table>
             <br />
-            <table class='receipt-total'>
+            <table class='receipt-total' style="width:100% !important;">
                 <!--<tr>
                     <td>Subtotal:</td>
                     <td class="pos-right-align">
                         <t t-esc="widget.format_currency(order.get_total_without_tax())"/>
                     </td>
                 </tr>-->
-                <tr>
+                <!--<tr>
                     <td>Tax:</td>
-                    <td class="pos-right-align">
+                    <td class="pos-right-align" style="text-align: right;">
                         <t t-esc="widget.format_currency(order.amount_tax)" />
                     </td>
-                </tr>
+                </tr>-->
                 <tr>
                     <td>Discount:</td>
-                    <td class="pos-right-align">
+                    <td class="pos-right-align" style="text-align: right;">
                         <t t-esc="widget.format_currency(discount_total)"/>
                     </td>
                 </tr>
-                <tr class="emph">
+                <tr class="emph" style="font-size:20px !important;">
                     <td>Total:</td>
-                    <td class="pos-right-align">
+                    <td class="pos-right-align" style="text-align: right;">
                         <t t-esc="widget.format_currency(order.amount_total)"/>
                     </td>
                 </tr>
             </table>
             <br />
-            <table class='receipt-paymentlines'>
+            <table class='receipt-paymentlines' style="width:100% !important;">
                 <t t-foreach="paymentlines" t-as="line">
                   <tr>
                       <td>
                           <t t-esc="line.name"/>
                       </td>
-                      <td class="pos-right-align">
+                      <td class="pos-right-align" style="text-align: right;">
                           <t t-esc="widget.format_currency(line.amount)"/>
                       </td>
                   </tr>
                 </t>
             </table>
             <br />
-            <table class='receipt-change'>
-                <tr><td>Change:</td><td class="pos-right-align">
-                    <t t-esc="widget.format_currency(change)"/>
-                    </td></tr>
+            <table class='receipt-change' style="width:100% !important;">
+                <tr>
+                    <td>Change:</td>
+                    <td class="pos-right-align" style="text-align: right;">
+                        <t t-esc="widget.format_currency(change)"/>
+                    </td>
+                </tr>
             </table>
             <br /><br /><br />
 
@@ -200,7 +223,7 @@
                     </td>
 
                     <td>
-                        Base Imponible
+                        Base Imp.
                     </td>
 
                     <td>
@@ -256,12 +279,12 @@
             <br />
             <br />
 
-            <div class="pos-center-align">
+            <div class="pos-center-align" style="text-align: center !important;">
                 <t t-esc="order.pos_reference"/>
                 <br />
                 <br />
             </div>
-
+            </div>
         </div>
     </t>
 

@@ -134,8 +134,44 @@ var OldOrdersWidget = pos_screens.ScreenWidget.extend({
                 // self.gui.screen_instances.receipt.print();
 
                 // self.gui.screen_instances.receipt.print_web();
-                console.error(self.gui.screen_instances);
+                // console.error(self.gui.screen_instances.receipt);
+
+                /*var env = {
+                    widget:  self.reprintTicket.widget,
+                    pos: self.reprintTicket.pos,
+                    order: self.reprintTicket.order,
+                    receipt: self.reprintTicket.order,
+                    paymentlines: self.reprintTicket.paymentlines
+                };
+                console.error(env);
+                var receipt = QWeb.render('XmlReceipt',env);
+
+                this.pos.proxy.print_receipt(receipt);
+                this.pos.get_order()._printed = true;*/
+
+                var mywindow = window.open('', 'IMPRIMIR TICKET', "width="+screen.availWidth+",height="+screen.availHeight);
+                var content = (document.getElementsByClassName('pos-sale-ticket')[0]).innerHTML;
+
+                mywindow.document.write('<html>');
+                mywindow.document.write('<body >');
+                mywindow.document.write(content);
+                mywindow.document.write('</body></html>');
+
+                mywindow.document.close(); // necessary for IE >= 10
+                mywindow.focus(); // necessary for IE >= 10*/
+
+                mywindow.print();
+                mywindow.close();
+
+                return true;
             }
+
+            /*new Model('pos.order').call('print_receipt').then(function(response){
+                // self.chrome.do_action('order_reprinting_pos.report_pos_reciept_new',{additional_context:{}});
+                self.chrome.do_action('order_reprinting_pos.pos_receipt_report',{additional_context:{}});
+            });*/
+
+
             /*new Model('pos.order').call('get_details',[self.pos_reference]).then(function(id){
                 self.chrome.do_action('order_reprinting_pos.pos_receipt_report',{additional_context:{
                     active_ids:[id],
@@ -250,6 +286,15 @@ var OldOrdersWidget = pos_screens.ScreenWidget.extend({
                 payments = result[2];
                 discount = result[1];
                 self.gui.show_screen('OldOrdersWidget');
+                self.reprintTicket = {
+                    widget:self,
+                    order: order_new,
+                    change: result[3],
+                    orderlines: lines,
+                    discount_total: discount,
+                    paymentlines: payments,
+                    pos: self.pos
+                };
                 self.$('.window').html(QWeb.render('PosTicketOld',{
                     widget:self,
                     order: order_new,
