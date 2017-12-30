@@ -1553,6 +1553,7 @@ var ReceiptScreenWidget = ScreenWidget.extend({
     },
     render_receipt: function() {
         var order = this.pos.get_order();
+
         this.$('.pos-receipt-container').html(QWeb.render('PosTicket',{
             widget:this,
             order: order,

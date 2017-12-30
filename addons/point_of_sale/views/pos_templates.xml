@@ -23,6 +23,9 @@
 
         <link rel="shortcut icon" href="/web/static/src/img/favicon.ico" type="image/x-icon"/>
 
+        <!--<script type="text/javascript" src="/point_of_sale/static/src/js/JsBarcode.all.min.js"></script>
+        <script type="text/javascript" src="/point_of_sale/static/src/js/jquery-barcode.js"></script>-->
+
         <script type="text/javascript">
             var odoo = {
                 csrf_token: "<t t-esc="request.csrf_token(None)"/>",

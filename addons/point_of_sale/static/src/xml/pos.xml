@@ -1395,12 +1395,12 @@
                     </t>
                 </t>
             </span>
-            <span class="order-button square neworder-button">
+            <!--<span class="order-button square neworder-button">
                 <i class='fa fa-plus' />
             </span>
             <span class="order-button square deleteorder-button">
                 <i class='fa fa-minus' />
-            </span>
+            </span>-->
         </div>
     </t>
 
@@ -1621,14 +1621,28 @@
 
             <div class="pos-center-align">
                 <t t-esc="order.name"/>
-                <!--<img t-if="order.name" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s&amp;humanreadable=%s' % ('Code128', order.name.split(' ')[1], 600, 100, 1)" style="width:300px;height:50px"/>
+                <!--<img t-if="order.name" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s&amp;humanreadable=%s' % ('Code128', 'ABC-abc-1234', 600, 100, 1)" style="width:300px;height:50px"/>-->
 
-                <t t-jquery='.pos-center-align' t-operation='after'>
+                <!--<t t-jquery='.pos-center-align' t-operation='after'>
                     <div class="pos-center-align barcode">
                       <img t-att-src="'/report/barcode/Code128/%s' % (order.name)"/>
                       <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s'%('Code128', 'text', 200, 200)"/>
                     </div>
                 </t>-->
+
+                <!--<div id="bcTarget"></div>
+
+                <script>
+                    $("#bcTarget").barcode("1234567890128", "ean13");
+                </script>-->
+
+                <!--<svg id="barcode"></svg>
+
+                <script>
+                    JsBarcode("#barcode", "Hi world!");
+                </script>-->
+
+
                 <br />
                 <br />
             </div>

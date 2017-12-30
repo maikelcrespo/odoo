@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-extend="OrderSelectorWidget">
+        <t t-jquery="div.order-selector" t-operation="append">
+            <div>
+                <span class="order-button square add-product">
+                    Añadir Producto
+                </span>
+            </div>
+        </t>
+    </t>
+    <t t-name="ProductCreationWidget">
+        <div class="modal-dialog">
+            <div class="popup popup-product-creation">
+                <p class="title" style="margin-bottom: 10px;">Nuevo Producto</p>
+                Nombre : <input class="name" type='text' style="width:60%;height:34px;border-radius:5px;"></input> <br /><br />
+                Tipo :
+                <select class="type" style="width:35%;height:30px;border-radius:5px;" t-att-disabled="true">
+                    <option>Consumible</option>
+                    <option selected="selected">Stockable</option>
+                    <option>Servicio</option>
+                </select>
+                <br /><br />
+                Categoría:
+                <select class="category" style="width:27%;height:30px;border-radius:5px;" t-att-disabled="true">
+                    <t t-foreach="widget.category || []" t-as="item">
+                        <option t-if="item.name !== 'Root'" t-att-value='item.id'>
+                            <t t-esc='item.name'/>
+                        </option>
+                        <option t-if="item.name == 'Root'" t-att-value='item.id' selected="selected">
+                            Todos
+                        </option>
+                    </t>
+                </select><br /><br />
+                Ud. Métrica:
+                <select class="uom" style="width:20%;height:30px;border-radius:5px;" t-att-disabled="true">
+                    <t t-foreach="widget.units || []" t-as="item">
+                        <option t-if="item.name !== 'Unidad(es)'" t-att-value='item.id'>
+                            <t t-esc='item.name'/>
+                        </option>
+
+                        <option t-if="item.name == 'Unidad(es)'" selected="selected" t-att-value='item.id'>
+                            <t t-esc='item.name'/>
+                        </option>
+                    </t>
+                </select><br />
+                 
+                Precio :
+                <input class="price" type='text' style="width:22%;height:8px !important;border-radius:5px;margin-top: 10px;"></input>
+                <div class="footer">
+                    <div class="button confirm">
+                        Ok
+                    </div>
+                    <div class="button cancel">
+                        Cancel
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+</templates>
