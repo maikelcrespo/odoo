@@ -74,6 +74,7 @@ var ProductCreationWidget = PosBaseWidget.extend({
         var type = this.$('.type').val();
         var category = this.$('.category').val();
         var unit = this.$('.uom').val();
+        var barcode = this.$('.barcode').val();
         var price = this.$('.price').val();
         if(isNaN(price) || !price) {
             alert("Please check the price !")
@@ -84,7 +85,8 @@ var ProductCreationWidget = PosBaseWidget.extend({
                 'type': type,
                 'category': category,
                 'price': price,
-                'unit': unit
+                'unit': unit,
+                 'barcode': barcode
             };
             new Model('product.product').call('create_product_pos',[1, product_vals]).then(function(product){
                     self.pos.db.add_products([product]);

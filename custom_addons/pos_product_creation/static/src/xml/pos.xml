@@ -44,6 +44,9 @@
                         </option>
                     </t>
                 </select><br />
+
+                Cód. Barras :
+                <input class="barcode" type='text' style="width:35%;height:8px !important;border-radius:5px;margin-top: 10px;"></input><br />
                  
                 Precio :
                 <input class="price" type='text' style="width:22%;height:8px !important;border-radius:5px;margin-top: 10px;"></input>
